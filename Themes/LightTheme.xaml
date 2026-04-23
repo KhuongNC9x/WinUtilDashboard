@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Light Theme Colors -->
+    <SolidColorBrush x:Key="BackgroundBrush" Color="#F3F3F3"/>
+    <SolidColorBrush x:Key="ForegroundBrush" Color="#202020"/>
+    <SolidColorBrush x:Key="SecondaryTextBrush" Color="#666666"/>
+
+    <SolidColorBrush x:Key="HeaderBrush" Color="#202020"/>
+    <SolidColorBrush x:Key="HeaderTextBrush" Color="White"/>
+
+    <SolidColorBrush x:Key="InputBrush" Color="White"/>
+    <SolidColorBrush x:Key="BorderBrush" Color="#CCCCCC"/>
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="#0078D4"/>
+    <SolidColorBrush x:Key="DangerBrush" Color="#D83B01"/>
+    <SolidColorBrush x:Key="SuccessBrush" Color="#107C10"/>
+
+    <SolidColorBrush x:Key="LogBrush" Color="#1E1E1E"/>
+    <SolidColorBrush x:Key="LogTextBrush" Color="#D4D4D4"/>
+
+    <!-- Accent colors for system monitor -->
+    <SolidColorBrush x:Key="AccentGreenBrush" Color="#4EC9B0"/>
+    <SolidColorBrush x:Key="AccentYellowBrush" Color="#DCDCAA"/>
+    <SolidColorBrush x:Key="AccentOrangeBrush" Color="#F48771"/>
+    <SolidColorBrush x:Key="AccentBlueBrush" Color="#9CDCFE"/>
+</ResourceDictionary>

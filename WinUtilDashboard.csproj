@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>WinUtilDashboard</RootNamespace>
+    <AssemblyName>WinUtilDashboard</AssemblyName>
+    <UseWPF>true</UseWPF>
+
+    <!-- Code quality -->
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+
+    <!-- UAC: app.manifest requires admin -->
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+
+    <!-- Single-file publish friendliness -->
+    <RuntimeIdentifiers>win-x64;win-x86;win-arm64</RuntimeIdentifiers>
+	
+	<ApplicationIcon>computer.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="computer.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- MVVM source generators ([ObservableProperty], [RelayCommand]) -->
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+
+    <!-- Dependency injection -->
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.1" />
+
+    <!-- Structured logging with file rotation -->
+    <PackageReference Include="Serilog" Version="4.0.2" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="8.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+    <PackageReference Include="Serilog.Sinks.Debug" Version="3.0.0" />
+
+    <!-- WMI (Win32_Processor, etc.) - not in BCL on .NET (Core) -->
+    <PackageReference Include="System.Management" Version="8.0.0" />
+
+    <!-- ServiceController (language-independent replacement for sc.exe/net.exe parsing) -->
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="8.0.1" />
+
+    <!-- Registry access on .NET (Core) -->
+    <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+
+    <!-- PerformanceCounter -->
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="computer.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>
