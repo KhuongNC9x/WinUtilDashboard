@@ -1,9 +1,5 @@
-using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -25,14 +21,14 @@ namespace WinUtilDashboard.ViewModels;
 public sealed partial class MainViewModel : ObservableObject, IDisposable
 {
     private readonly ISystemMonitorService _monitor;
-    private readonly ICleanupService        _cleanup;
-    private readonly IFolderScannerService  _scanner;
-    private readonly IProcessService        _process;
-    private readonly IHardwareInfoService   _hardware;
+    private readonly ICleanupService _cleanup;
+    private readonly IFolderScannerService _scanner;
+    private readonly IProcessService _process;
+    private readonly IHardwareInfoService _hardware;
     private readonly IStartupManagerService _startup;
-    private readonly IWindowsUpdateService  _wuService;
-    private readonly IExportService         _export;
-    private readonly INotificationService   _notification;
+    private readonly IWindowsUpdateService _wuService;
+    private readonly IExportService _export;
+    private readonly INotificationService _notification;
     private readonly ILogger<MainViewModel> _logger;
 
     private readonly DispatcherTimer _monitorTimer;
@@ -43,26 +39,26 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     // ---------- bindable state ----------
 
-    [ObservableProperty] private double  cpuPercent;
-    [ObservableProperty] private double  ramPercent;
-    [ObservableProperty] private double  ramUsedGb;
-    [ObservableProperty] private double  ramTotalGb;
-    [ObservableProperty] private double  diskFreeGb;
-    [ObservableProperty] private double  diskTotalGb;
-    [ObservableProperty] private double  diskFreePercent;
+    [ObservableProperty] private double cpuPercent;
+    [ObservableProperty] private double ramPercent;
+    [ObservableProperty] private double ramUsedGb;
+    [ObservableProperty] private double ramTotalGb;
+    [ObservableProperty] private double diskFreeGb;
+    [ObservableProperty] private double diskTotalGb;
+    [ObservableProperty] private double diskFreePercent;
     [ObservableProperty] private double? tempCelsius;
 
-    [ObservableProperty] private string cpuDisplay  = "0%";
-    [ObservableProperty] private string ramDisplay  = "0%";
+    [ObservableProperty] private string cpuDisplay = "0%";
+    [ObservableProperty] private string ramDisplay = "0%";
     [ObservableProperty] private string tempDisplay = "N/A";
     [ObservableProperty] private string diskDisplay = "0 GB";
-    [ObservableProperty] private string ramDetails  = "0.0 / 0.0 GB";
+    [ObservableProperty] private string ramDetails = "0.0 / 0.0 GB";
     [ObservableProperty] private string diskPercentDisplay = "0% free";
     [ObservableProperty] private string uptimeDisplay = "0h 0m";
     [ObservableProperty] private string totalRamDisplay = "0.0 GB";
 
-    [ObservableProperty] private string logText    = "";
-    [ObservableProperty] private int    alertCount;
+    [ObservableProperty] private string logText = "";
+    [ObservableProperty] private int alertCount;
 
     [ObservableProperty] private bool isBusy;
 
@@ -95,16 +91,16 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         INotificationService notification,
         ILogger<MainViewModel> logger)
     {
-        _monitor      = monitor;
-        _cleanup      = cleanup;
-        _scanner      = scanner;
-        _process      = process;
-        _hardware     = hardware;
-        _startup      = startup;
-        _wuService    = wuService;
-        _export       = export;
+        _monitor = monitor;
+        _cleanup = cleanup;
+        _scanner = scanner;
+        _process = process;
+        _hardware = hardware;
+        _startup = startup;
+        _wuService = wuService;
+        _export = export;
         _notification = notification;
-        _logger       = logger;
+        _logger = logger;
 
         _notification.Alerts.CollectionChanged += (_, _) => AlertCount = _notification.Alerts.Count;
 
@@ -150,22 +146,22 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     private void ApplyMetrics(QuickSystemInfo info)
     {
-        CpuPercent      = info.CpuPercent;
-        RamPercent      = info.RamPercent;
-        RamUsedGb       = info.RamUsedGb;
-        RamTotalGb      = info.RamTotalGb;
-        DiskFreeGb      = info.DiskFreeGb;
-        DiskTotalGb     = info.DiskTotalGb;
+        CpuPercent = info.CpuPercent;
+        RamPercent = info.RamPercent;
+        RamUsedGb = info.RamUsedGb;
+        RamTotalGb = info.RamTotalGb;
+        DiskFreeGb = info.DiskFreeGb;
+        DiskTotalGb = info.DiskTotalGb;
         DiskFreePercent = info.DiskFreePercent;
-        TempCelsius     = info.TempCelsius;
+        TempCelsius = info.TempCelsius;
 
-        CpuDisplay         = $"{info.CpuPercent:F0}%";
-        RamDisplay         = $"{info.RamPercent:F0}%";
-        RamDetails         = $"{info.RamUsedGb:F1} / {info.RamTotalGb:F1} GB";
-        TempDisplay        = info.TempCelsius.HasValue ? $"{info.TempCelsius:F0}°C" : "N/A";
-        DiskDisplay        = $"{info.DiskFreeGb:F0} GB";
+        CpuDisplay = $"{info.CpuPercent:F0}%";
+        RamDisplay = $"{info.RamPercent:F0}%";
+        RamDetails = $"{info.RamUsedGb:F1} / {info.RamTotalGb:F1} GB";
+        TempDisplay = info.TempCelsius.HasValue ? $"{info.TempCelsius:F0}°C" : "N/A";
+        DiskDisplay = $"{info.DiskFreeGb:F0} GB";
         DiskPercentDisplay = $"{info.DiskFreePercent:F0}% free";
-        TotalRamDisplay    = $"{info.RamTotalGb:F1} GB";
+        TotalRamDisplay = $"{info.RamTotalGb:F1} GB";
     }
 
     private void CheckAlertsSync()
@@ -451,6 +447,25 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         {
             _logger.LogWarning(ex, "Failed to open logs folder");
             AppendLog($"❌ Cannot open logs folder: {ex.Message}");
+        }
+    }
+
+    [RelayCommand]
+    private void OpenTaskManager()
+    {
+        try
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "taskmgr.exe",
+                UseShellExecute = true
+            });
+            AppendLog("⚙️ Opened Task Manager");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to open Task Manager");
+            AppendLog($"❌ Cannot open Task Manager: {ex.Message}");
         }
     }
 

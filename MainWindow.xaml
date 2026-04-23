@@ -17,7 +17,7 @@
             <!-- Log (collapsible) -->
         </Grid.RowDefinitions>
 
-        <!-- HEADER với System Monitor -->
+        <!-- HEADER with System Monitor -->
         <Border Grid.Row="0" Background="{DynamicResource HeaderBrush}" Padding="16,10">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -242,6 +242,13 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="📋" FontSize="18" Margin="0,0,12,0"/>
                                 <TextBlock Text="Open Logs Folder" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{StaticResource QuickActionButton}" Command="{Binding OpenTaskManagerCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="⚙️" FontSize="18" Margin="0,0,12,0"/>
+                                <TextBlock Text="Task Manager" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
 
