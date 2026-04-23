@@ -361,3 +361,26 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Logs produced by Serilog
+Logs/
+*.log
+
+# Migration backups from my PowerShell script
+WinUtilDashboard_BACKUP_*/
+
+# Local user settings
+*.user
+*.suo
+
+# Rider / VS Code (if you use them alongside VS)
+.idea/
+.vscode/
+
+# Published output
+publish/
+*.publish.xml
+
+# OS junk
+.DS_Store
+Thumbs.db
